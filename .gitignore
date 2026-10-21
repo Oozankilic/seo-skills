@@ -1,0 +1,6 @@
+.DS_Store
+__pycache__/
+*.pyc
+seo-report*.json
+seo-report*.txt
+.env

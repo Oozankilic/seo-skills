@@ -1,0 +1,23 @@
+# SerpBear: self-hosted rank tracker (https://github.com/towfiqi/serpbear, docs at https://docs.serpbear.com)
+# Usage: docker compose -f docker/serpbear.compose.yml up -d  ->  http://localhost:3000
+# Change USER, PASSWORD, SECRET and APIKEY. Then pick a SERP scraper in Settings (serper.dev, SearchApi, SerpApi,
+# HasData, or your own proxies) and optionally SMTP for notifications and Search Console / Google Ads integration.
+services:
+  serpbear:
+    image: towfiqi/serpbear:latest
+    container_name: serpbear
+    restart: unless-stopped
+    ports:
+      - "${SERPBEAR_PORT:-3000}:3000"
+    environment:
+      - USER=admin
+      - PASSWORD=change-me
+      - SECRET=change-me-to-a-long-random-string
+      - APIKEY=change-me-to-another-random-string
+      - SESSION_DURATION=24
+      - NEXT_PUBLIC_APP_URL=${SERPBEAR_URL:-http://localhost:3000}
+    volumes:
+      - serpbear_data:/app/data
+
+volumes:
+  serpbear_data:

@@ -1,0 +1,13 @@
+{
+  "name": "seo-skills",
+  "description": "SEO skills for AI coding agents: audit, technical foundations, schema, keyword research, content, AI visibility (GEO/AEO), programmatic pages, local SEO, link building and an open-source tool stack.",
+  "version": "1.0.0",
+  "author": {
+    "name": "Ozan Kilic",
+    "url": "https://github.com/Oozankilic"
+  },
+  "homepage": "https://github.com/Oozankilic/seo-skills",
+  "repository": "https://github.com/Oozankilic/seo-skills",
+  "license": "MIT",
+  "keywords": ["seo", "geo", "aeo", "schema", "keyword-research", "content", "lighthouse"]
+}

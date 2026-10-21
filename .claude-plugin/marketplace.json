@@ -1,0 +1,21 @@
+{
+  "name": "seo-skills",
+  "owner": {
+    "name": "Ozan Kilic",
+    "url": "https://github.com/Oozankilic"
+  },
+  "metadata": {
+    "description": "SEO skills for AI coding agents",
+    "version": "1.0.0"
+  },
+  "plugins": [
+    {
+      "name": "seo-skills",
+      "source": "./",
+      "description": "Audit, fix and grow a website's organic and AI-search visibility with evidence-first SEO skills and free open-source tooling.",
+      "version": "1.0.0",
+      "category": "marketing",
+      "keywords": ["seo", "geo", "aeo", "schema", "keyword-research", "content"]
+    }
+  ]
+}

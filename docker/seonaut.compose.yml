@@ -1,0 +1,47 @@
+# SEOnaut: self-hosted SEO audit crawler (https://github.com/StJudeWasHere/seonaut)
+# Usage: docker compose -f docker/seonaut.compose.yml up -d  ->  http://localhost:9000
+# Change the database passwords before exposing this beyond localhost.
+services:
+  db:
+    image: mysql:8.4
+    container_name: seonaut-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=change-me-root
+      - MYSQL_DATABASE=seonaut
+      - MYSQL_USER=seonaut
+      - MYSQL_PASSWORD=change-me
+    volumes:
+      - seonaut_db:/var/lib/mysql
+    networks:
+      - seonaut
+
+  app:
+    image: ghcr.io/stjudewashere/seonaut:latest
+    container_name: seonaut-app
+    ports:
+      - "${SEONAUT_PORT:-9000}:9000"
+    depends_on:
+      - db
+    command: sh -c "/bin/wait && /app/seonaut"
+    environment:
+      - WAIT_HOSTS=db:3306
+      - WAIT_TIMEOUT=300
+      - WAIT_SLEEP_INTERVAL=30
+      - WAIT_HOST_CONNECT_TIMEOUT=30
+      - SEONAUT_SERVER_HOST=0.0.0.0
+      - SEONAUT_SERVER_PORT=9000
+      - SEONAUT_SERVER_URL=${SEONAUT_SERVER_URL:-http://localhost:9000}
+      - SEONAUT_DATABASE_SERVER=db
+      - SEONAUT_DATABASE_PORT=3306
+      - SEONAUT_DATABASE_USER=seonaut
+      - SEONAUT_DATABASE_PASSWORD=change-me
+      - SEONAUT_DATABASE_DATABASE=seonaut
+    networks:
+      - seonaut
+
+volumes:
+  seonaut_db:
+
+networks:
+  seonaut:
+    driver: bridge
